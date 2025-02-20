@@ -1,7 +1,7 @@
 // CategoryList.tsx
 import React from "react";
 import { Category } from "./types";
-import { CategoryCard } from "./CategoryCard";
+import CategoryCard from "./CategoryCard";
 
 interface CategoryListProps {
   categories: { [name: string]: Category };

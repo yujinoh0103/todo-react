@@ -268,18 +268,17 @@ const App: React.FC = () => {
             </button>
           </div>
 
-          <CategoryList>
+          <CategoryList
             categories={categories}
             onRemoveCategory={removeCategory}
             onAddTask={addTaskToCategory}
             onRemoveTask={removeTaskFromCategory}
             onToggleTask={toggleTaskCompleted}
-            onChangePenColor=
-            {(color: React.SetStateAction<string>) => {
+            onChangePenColor={(color: React.SetStateAction<string>) => {
               setCurrentPenColor(color);
               console.log("펜 색 변경:", color);
             }}
-          </CategoryList>
+          />
         </div>
       </div>
     </div>
