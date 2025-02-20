@@ -1,0 +1,65 @@
+/* 전체 컨테이너 (두 개의 시간표: 왼쪽=계획, 오른쪽=실행) */
+.time-grid-containers {
+  display: flex;
+  justify-content: space-evenly; /* 가운데 정렬 및 양 옆 간격 확보 */
+  flex-wrap: wrap; /* 화면이 작아지면 줄바꿈 */
+  margin: 20px auto;
+  max-width: 900px; /* 최대 너비 제한 */
+}
+
+/* 각 시간표 컨테이너 */
+.time-grid-container {
+  display: flex;
+  align-items: flex-start;
+  margin: 20px;
+  flex-direction: column; /* 라벨과 그리드를 세로 배치 */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 시간 라벨 목록 */
+.time-labels {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  font-size: 14px;
+  color: #444;
+}
+
+/* 실제 라벨 텍스트(각 정시) */
+.time-label {
+  margin: 7.5px 0;
+}
+
+/* 시간 그리드 (시간 블록들이 들어갈 영역) */
+.time-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 50px); /* 6칸 (가로) */
+  grid-auto-rows: 30px; /* 각 블록 높이 */
+  gap: 2px; /* 블록 간격 */
+}
+
+/* 개별 시간 블록 스타일 */
+.time-block {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  text-align: center;
+  line-height: 15px; /* 수직 가운데 정렬 */
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border-radius: 4px;
+}
+
+/* 시간 블록 호버 효과 */
+.time-block:hover {
+  background-color: #e6e6e6;
+}
+
+.time-grid-container {
+  display: flex;
+  flex-direction: row; /* 가로축으로 배치 (기본값) */
+}
