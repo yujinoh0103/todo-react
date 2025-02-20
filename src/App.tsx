@@ -215,71 +215,64 @@ const App: React.FC = () => {
   // UI 렌더
   // ----------------------------------------------------
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-      {/* 1) 상단: WhenToMeet 두 개 + Calendar */}
-      <div
-        className="timegrid-containers"
-        style={{ display: "flex", gap: "20px" }}
-      >
-        <WhenToMeet index={0} />
-        <WhenToMeet index={1} />
-      </div>
+    <div>
       <Calendar />
 
       {/* 2) 메인 컨텐츠: 날짜별 태스크 + 카테고리 목록 */}
-      <div style={{ display: "flex", gap: "20px" }}>
+      <div>
         {/* 왼쪽: 날짜 선택 + 해당 날짜 태스크 목록 */}
-        <div>
-          <h1>Tasks By Selected Date</h1>
-          <input
-            type="date"
-            value={selectedDateStr}
-            onChange={handleDateChange}
-          />
-          <TaskListForDate
-            date={selectedDateStr}
-            tasksByDate={tasksByDate}
-            categories={categories}
-            onClickTask={(color) => {
-              setCurrentPenColor(color);
-              console.log("펜 색 변경:", color);
-            }}
-          />
-        </div>
 
-        {/* 오른쪽: 카테고리 목록 + 카테고리 추가 폼 */}
-        <div>
-          <h1>Categories</h1>
-          <div style={{ marginBottom: "16px" }}>
-            <input type="text" id="category-name" placeholder="카테고리 이름" />
-            <input type="color" id="category-color" defaultValue="#dddddd" />
-            <button
-              onClick={() => {
-                const name = (
-                  document.getElementById("category-name") as HTMLInputElement
-                )?.value.trim();
-                const color = (
-                  document.getElementById("category-color") as HTMLInputElement
-                )?.value;
-                if (name && color) addCategory(name, color);
-              }}
-            >
-              Add Category
-            </button>
-          </div>
-
-          <CategoryList
-            categories={categories}
-            onRemoveCategory={removeCategory}
-            onAddTask={addTaskToCategory}
-            onRemoveTask={removeTaskFromCategory}
-            onToggleTask={toggleTaskCompleted}
-            onChangePenColor={(color: React.SetStateAction<string>) => {
-              setCurrentPenColor(color);
-              console.log("펜 색 변경:", color);
+        <h1>Tasks By Selected Date</h1>
+        <input
+          type="date"
+          value={selectedDateStr}
+          onChange={handleDateChange}
+        />
+        <TaskListForDate
+          date={selectedDateStr}
+          tasksByDate={tasksByDate}
+          categories={categories}
+          onClickTask={(color) => {
+            setCurrentPenColor(color);
+          }}
+        />
+      </div>
+      <div>
+        <h1>Categories</h1>
+        <div style={{ marginBottom: "16px" }}>
+          <input type="text" id="category-name" placeholder="카테고리 이름" />
+          <input type="color" id="category-color" defaultValue="#dddddd" />
+          <button
+            onClick={() => {
+              const name = (
+                document.getElementById("category-name") as HTMLInputElement
+              )?.value.trim();
+              const color = (
+                document.getElementById("category-color") as HTMLInputElement
+              )?.value;
+              if (name && color) addCategory(name, color);
             }}
-          />
+          >
+            Add Category
+          </button>
         </div>
+        <div
+          className="timegrid-containers"
+          style={{ display: "flex", gap: "20px", flexDirection: "row" }}
+        >
+          <WhenToMeet index={0} />
+          <WhenToMeet index={1} />
+        </div>
+        <CategoryList
+          categories={categories}
+          onRemoveCategory={removeCategory}
+          onAddTask={addTaskToCategory}
+          onRemoveTask={removeTaskFromCategory}
+          onToggleTask={toggleTaskCompleted}
+          onChangePenColor={(color: React.SetStateAction<string>) => {
+            setCurrentPenColor(color);
+          }}
+        />
       </div>
     </div>
   );
