@@ -28,6 +28,7 @@ const App: React.FC = () => {
         <Calendar />
 
         <div>value={selectedDateStr}</div>
+        <div>{selectedDate.toISOString()}</div>
 
         <div>
           <h1>Categories</h1>
