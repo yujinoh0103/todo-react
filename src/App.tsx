@@ -8,6 +8,7 @@ import { useDate } from "./hooks/useDate";
 import { usePenColor } from "./hooks/usePenColor";
 import { DateProvider } from "./contexts/SetDate";
 import DaysGrid from "./components/molecules/DaysGrid";
+
 const App: React.FC = () => {
   const { categories, addCategory, removeCategory } = useCategory();
   const { tasksByDate, setTasksByDate } = useTask();
@@ -43,7 +44,9 @@ const App: React.FC = () => {
                 const color = (
                   document.getElementById("category-color") as HTMLInputElement
                 )?.value;
-                if (name && color) addCategory(name, color);
+                if (name && color) {
+                  addCategory(name, color);
+                }
               }}
             >
               Add Category
@@ -57,6 +60,23 @@ const App: React.FC = () => {
             <WhenToMeet index={0} />
             <WhenToMeet index={1} />
           </div>
+
+          {/* 
+            기존 코드들은 건드리지 않고,
+            아래 부분에 CategoryCard를 렌더링
+          */}
+          {Object.values(categories).map((category) => (
+            <CategoryCard
+              key={category.name}
+              category={category}
+              onRemoveCategory={removeCategory}
+              // 실제 작업이 필요하다면 useTask / useCategory에서 작성한 함수를 연결
+              onAddTask={(text, deadline) => console.log("Add Task", text, deadline)}
+              onRemoveTask={(index) => console.log("Remove Task", index)}
+              onToggleTask={(index) => console.log("Toggle Task", index)}
+              onChangePenColor={(color) => setCurrentPenColor(color)}
+            />
+          ))}
         </div>
       </DateProvider>
     </div>
