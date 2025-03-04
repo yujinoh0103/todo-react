@@ -27,7 +27,6 @@ const App: React.FC = () => {
     <div>
       <DateProvider>
         <Calendar />
-
         <div>value={selectedDateStr}</div>
         <div>{selectedDate.toISOString()}</div>
 
@@ -61,10 +60,6 @@ const App: React.FC = () => {
             <WhenToMeet index={1} />
           </div>
 
-          {/* 
-            기존 코드들은 건드리지 않고,
-            아래 부분에 CategoryCard를 렌더링
-          */}
           {Object.values(categories).map((category) => (
             <CategoryCard
               key={category.name}
